@@ -2,17 +2,16 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
-import bodyParser from 'body-parser';
 
 const app = express();
 const PORT = 3000;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
+ app.use(express.json());
 
-// MongoDB Atlas Connection
-const mongoURI = "mongodb+srv://phadtareareen:123123456456@services.ito6x35.mongodb.net/?retryWrites=true&w=majority&appName=Services";
+// MongoDB Atlas Connection (use environment variable MONGO_URI)
+const mongoURI = process.env.MONGO_URI || "mongodb+srv://phadtareareen:<db_password>@services.ito6x35.mongodb.net/?retryWrites=true&w=majority&appName=Services";
 mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch(err => console.error('MongoDB Atlas connection error:', err));
@@ -116,4 +115,5 @@ app.post('/login', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
+  console.log('Ensure MONGO_URI env var is set when connecting to Atlas.');
 });
