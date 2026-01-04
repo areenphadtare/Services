@@ -74,7 +74,7 @@ const userLoggedIn = auth?.userLoggedIn ?? false;
     .login-container {
           width: 350px;
           margin: 50px auto;
-          padding: 25px;
+         padding: 25px;
           border-radius: 12px;
           box-shadow: 0 4px 10px rgba(0,0,0,0.1);
           background: #fff;
